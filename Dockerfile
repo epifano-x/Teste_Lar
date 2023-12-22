@@ -16,7 +16,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR ./
 
 # Copia os arquivos publicados da etapa de compilação
-COPY --from=build ./
+COPY --from=build /app
 
 EXPOSE 5109
 

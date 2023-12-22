@@ -1,7 +1,8 @@
 # Etapa 1: Imagem de Build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /app
-
+# Definir a variável de ambiente ASPNETCORE_URLS
+ENV ASPNETCORE_URLS=http://*:5109
 # Copia csproj e restaura as dependências
 COPY *.csproj ./
 RUN dotnet restore

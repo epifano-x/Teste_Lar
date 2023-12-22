@@ -1,24 +1,22 @@
-# Stage 1: Build the application
+# Etapa de compilação
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
 
-WORKDIR /
-VOLUME /root/.aspnet/DataProtection-Keys
+# Copia os arquivos do projeto
+COPY . .
 
-# Copy csproj and restore as distinct layers
-COPY ["Teste_Lar.csproj", "./"]
-RUN dotnet restore "Teste_Lar.csproj"
+# Restaura as dependências e publica o projeto
+RUN dotnet restore
+RUN dotnet publish -c Release -o /app
 
-# Copy everything else and build
-COPY . ./
-RUN dotnet publish "Teste_Lar.csproj" -c Release -o out
-
-# Stage 2: Build the runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+# Etapa de execução
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
-COPY --from=build /app/out .
 
-# Open port 5109 for the application
+# Copia os arquivos publicados da etapa de compilação
+COPY --from=build /app ./
+
 EXPOSE 5109
 
-# Run the application
+# Define o ponto de entrada da aplicação
 ENTRYPOINT ["dotnet", "Teste_Lar.dll"]

@@ -8,7 +8,7 @@ using Teste_Lar.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adicione esta seção para configurar a autenticação JWT
+// Adicione esta seÃ§Ã£o para configurar a autenticaÃ§Ã£o JWT
 var key = Encoding.ASCII.GetBytes(builder.Configuration["JwtConfig:Secret"]);
 builder.Services.AddAuthentication(x =>
 {
@@ -17,7 +17,7 @@ builder.Services.AddAuthentication(x =>
 })
 .AddJwtBearer(x =>
 {
-    x.RequireHttpsMetadata = false; // Ajuste conforme necessário para produção
+    x.RequireHttpsMetadata = false; // Ajuste conforme necessÃ¡rio para produÃ§Ã£o
     x.SaveToken = true;
     x.TokenValidationParameters = new TokenValidationParameters
     {
@@ -32,7 +32,7 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddDbContext<ConnectionContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Adicione os serviços de repositório
+// Adicione os serviÃ§os de repositÃ³rio
 builder.Services.AddTransient<IPessoaRepository, PessoaRepository>();
 builder.Services.AddTransient<ITelefoneRepository, TelefoneRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
@@ -46,14 +46,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("http://localhost:3000") // Front-end origin
+        builder => builder.WithOrigins("http://localhost:80") // Front-end origin
                           .AllowAnyHeader()
                           .AllowAnyMethod());
 });
 
 var app = builder.Build();
 
-// Pipeline de requisições
+// Pipeline de requisiÃ§Ãµes
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -63,11 +63,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
-// Middlewares de autenticação e autorização
+// Middlewares de autenticaÃ§Ã£o e autorizaÃ§Ã£o
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Outros middlewares, como UseCors, se você estiver usando CORS
+// Outros middlewares, como UseCors, se vocÃª estiver usando CORS
 app.UseCors("AllowSpecificOrigin");
 
 // Finalmente, UseEndpoints para mapear os controladores

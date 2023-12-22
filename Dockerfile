@@ -1,6 +1,8 @@
 # Stage 1: Build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
 WORKDIR /app
+VOLUME /root/.aspnet/DataProtection-Keys
 
 # Copy csproj and restore as distinct layers
 COPY ["Teste_Lar.csproj", "./"]

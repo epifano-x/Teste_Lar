@@ -19,4 +19,4 @@ COPY --from=build /app/out .
 EXPOSE 5109
 
 # Run the application
-ENTRYPOINT ["dotnet", "MeuProjeto.dll"]  # Substitua MeuProjeto.dll pelo nome correto
+ENTRYPOINT ["dotnet", "api-lar.dll"] 

@@ -1,12 +1,14 @@
 # Etapa de compilação
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /src
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+WORKDIR /app
 
 # Copia os arquivos do projeto
-COPY . .
+COPY *.csproj .
 
-# Restaura as dependências e publica o projeto
 RUN dotnet restore
+
+COPY . ./
+
 RUN dotnet publish -c Release -o /app
 
 # Etapa de execução

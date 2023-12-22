@@ -3,12 +3,12 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
+COPY ["Teste_Lar.csproj", "./"]
+RUN dotnet restore "Teste_Lar.csproj"
 
 # Copy everything else and build
 COPY . ./
-RUN dotnet publish -c Release -o out
+RUN dotnet publish "Teste_Lar.csproj" -c Release -o out
 
 # Stage 2: Build the runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
@@ -19,4 +19,4 @@ COPY --from=build /app/out .
 EXPOSE 5109
 
 # Run the application
-ENTRYPOINT ["dotnet", "api-lar.dll"] 
+ENTRYPOINT ["dotnet", "Teste_Lar.dll"]

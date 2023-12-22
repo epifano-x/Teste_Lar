@@ -1,0 +1,29 @@
+@Teste_Lar_HostAddress = http://localhost:5109
+
+GET {{Teste_Lar_HostAddress}}/Pessoa/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InN0cmluZyIsIm5iZiI6MTcwMzEzMjI4NywiZXhwIjoxNzAzNzM3MDg3LCJpYXQiOjE3MDMxMzIyODd9.LLpZ1tNLfsKeh7FTKKaoDG7PtVSFpk0tQeX4jLU7erA
+Accept: application/json
+
+###
+
+PUT {{Teste_Lar_HostAddress}}/Pessoa/10
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InN0cmluZyIsIm5iZiI6MTcwMzEzMjI4NywiZXhwIjoxNzAzNzM3MDg3LCJpYXQiOjE3MDMxMzIyODd9.LLpZ1tNLfsKeh7FTKKaoDG7PtVSFpk0tQeX4jLU7erA
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 10,
+  "nome": "jao",
+  "cpf": "09957848964",
+  "dataNascimento": "1222-12-12",
+  "estaAtivo": true,
+  "telefones": [
+    {
+      "id": 8,
+      "numero": "9999999999",
+      "tipo": "Celular",
+      "isWhatsApp": true,
+      "pessoaId": 10
+    }
+  ]
+}

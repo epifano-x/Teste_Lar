@@ -11,7 +11,7 @@ RUN dotnet publish -c Release -o /app
 
 # Etapa de execução
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
-WORKDIR /app
+WORKDIR ./
 
 # Copia os arquivos publicados da etapa de compilação
 COPY --from=build /app ./

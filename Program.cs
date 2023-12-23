@@ -43,12 +43,13 @@ builder.Services.AddControllers();
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.UseCors(options =>
+app.UseCors(options =>
 {
-    options.AllowAnyOrigin() // Aceitar solicitações de qualquer origem
+    options.WithOrigins("http://localhost:3000")
            .AllowAnyHeader()
            .AllowAnyMethod();
 });
+
 
 
 var app = builder.Build();

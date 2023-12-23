@@ -43,7 +43,7 @@ builder.Services.AddControllers();
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-app.UseCors(options =>
+builder.Services.UseCors(options =>
 {
     options.AllowAnyOrigin() // Aceitar solicitações de qualquer origem
            .AllowAnyHeader()
